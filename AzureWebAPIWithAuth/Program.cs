@@ -1,7 +1,6 @@
 using AzureWebAPIWithAuth;
 using Microsoft.Identity.Web;
 using Serilog;
-using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Json;
 
