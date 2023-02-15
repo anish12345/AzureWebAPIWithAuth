@@ -34,7 +34,7 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 Log.Error("Controller Name : " + this.ControllerContext.ActionDescriptor.ControllerName + "Controller" +
                     " \nFailure message : " + ex);
-                return this.BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
         [HttpPost]
@@ -44,6 +44,11 @@ namespace AzureWebAPIWithAuth.Controllers
         {
             try
             {
+                if (inventory == null)
+                {
+                    return BadRequest();
+                }
+
                 int result = await inventoryService.AddInventory(inventory);
                 if (result > 0)
                 {
@@ -58,7 +63,8 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 Log.Error("Controller Name : " + this.ControllerContext.ActionDescriptor.ControllerName + "Controller" +
                     " \nFailure message : " + ex);
-                return this.BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                        ex);
             }
         }
 
@@ -69,6 +75,10 @@ namespace AzureWebAPIWithAuth.Controllers
         {
             try
             {
+                if (inventory == null)
+                {
+                    return BadRequest();
+                }
                 int result = await inventoryService.UpdateInventory(inventory);
                 if (result > 0)
                 {
@@ -83,7 +93,7 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 Log.Error("Controller Name : " + this.ControllerContext.ActionDescriptor.ControllerName + "Controller" +
                     " \nFailure message : " + ex);
-                return this.BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
         [HttpDelete]
@@ -93,6 +103,10 @@ namespace AzureWebAPIWithAuth.Controllers
         {
             try
             {
+                if (inventoryID == 0)
+                {
+                    return BadRequest();
+                }
                 int result = await inventoryService.DeleteInventory(inventoryID);
                 if (result > 0)
                 {
@@ -107,7 +121,7 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 Log.Error("Controller Name : " + this.ControllerContext.ActionDescriptor.ControllerName + "Controller" +
                     " \nFailure message : " + ex);
-                return this.BadRequest(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
     }

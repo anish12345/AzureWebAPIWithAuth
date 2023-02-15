@@ -1,8 +1,6 @@
 ﻿using AzureWebAPIWithAuth.Interfaces;
 using AzureWebAPIWithAuth.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
-using Microsoft.OpenApi.Models;
 
 namespace AzureWebAPIWithAuth
 {
