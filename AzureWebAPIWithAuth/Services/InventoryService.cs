@@ -36,7 +36,6 @@ namespace AzureWebAPIWithAuth.Services
                         InventoryList.Add(_product);
                     }
                 }
-                sqlConnection.Close();
                 return InventoryList;
             }
             catch (Exception)
