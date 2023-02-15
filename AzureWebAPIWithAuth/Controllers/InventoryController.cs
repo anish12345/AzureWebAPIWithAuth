@@ -46,7 +46,8 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 if (inventory == null)
                 {
-                    return BadRequest();
+                    ModelState.AddModelError("inventory", "inventory model error");
+                    return BadRequest(ModelState);
                 }
 
                 int result = await inventoryService.AddInventory(inventory);
@@ -77,7 +78,8 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 if (inventory == null)
                 {
-                    return BadRequest();
+                    ModelState.AddModelError("inventory", "inventory model error");
+                    return BadRequest(ModelState);
                 }
                 int result = await inventoryService.UpdateInventory(inventory);
                 if (result > 0)
@@ -105,7 +107,8 @@ namespace AzureWebAPIWithAuth.Controllers
             {
                 if (inventoryID == 0)
                 {
-                    return BadRequest();
+                    ModelState.AddModelError("inventoryID", "inventoryID model error");
+                    return BadRequest(ModelState);
                 }
                 int result = await inventoryService.DeleteInventory(inventoryID);
                 if (result > 0)
